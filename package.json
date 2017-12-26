@@ -1,0 +1,23 @@
+{
+  "name": "h5-generator",
+  "version": "1.0.0",
+  "description": "做一个简单的营销h5配置工具，包含滑屏翻页和长页面，定制化页面跳转逻辑",
+  "main": "index.js",
+  "dependencies": {
+    "alphabetjs": "^0.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suning007/h5-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suning007/h5-generator/issues"
+  },
+  "homepage": "https://github.com/suning007/h5-generator#readme"
+}

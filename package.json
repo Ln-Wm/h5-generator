@@ -1,23 +1,58 @@
 {
   "name": "h5-generator",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "做一个简单的营销h5配置工具，包含滑屏翻页和长页面，定制化页面跳转逻辑",
-  "main": "index.js",
-  "dependencies": {
-    "alphabetjs": "^0.1.3"
-  },
-  "devDependencies": {},
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=development pm2 start ./process.json && pm2 logs H5G",
+    "init": "gulp init --gulpfile ./tools/build/gulpfile.js --name",
+    "build": "node ./tools/build/build.js --name",
+    "dev": "node ./tools/build/build-dev.js --name"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/suning007/h5-generator.git"
+  "dependencies": {
+    "art-template": "^4.12.2",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "express": "~4.0.0",
+    "express-art-template": "^1.0.0",
+    "figlet": "^1.2.0",
+    "lodash": "^4.13.1",
+    "mongoose": "^4.12.3",
+    "morgan": "~1.0.0",
+    "static-favicon": "~1.0.0"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/suning007/h5-generator/issues"
-  },
-  "homepage": "https://github.com/suning007/h5-generator#readme"
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "axios": "^0.17.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "chalk": "^1.1.3",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^1.1.6",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-template": "^3.1.0",
+    "node-notifier": "^5.1.2",
+    "node-sass": "^4.5.0",
+    "ora": "^1.2.0",
+    "sass-loader": "^5.0.1",
+    "source-map-loader": "^0.2.1",
+    "sweetalert": "^2.1.0",
+    "url-loader": "^0.6.2",
+    "vue": "^2.5.13",
+    "vue-loader": "^11.1.4",
+    "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.5.13",
+    "vue-style-loader": "^2.0.5",
+    "vue-template-compiler": "^2.3.3",
+    "vuex": "^3.0.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-dev-server": "^2.9.1",
+    "yargs": "^3.31.0"
+  }
 }

@@ -1,0 +1,14 @@
+<% extend('./layouts/layout.html') %>
+<% block('tkd', function(){ %>
+    <title>活动列表</title>
+<% }) %>
+<% block('style', function(){ %>
+    <link rel="stylesheet" href="/dist/index/css/index.css">
+<% }) %>
+<% block('script', function(){ %>
+    <script src="/dist/index/index.min.js"></script>
+<% }) %>
+<% block('content', function(){ %>
+    <div id="app"></div>
+    <input type="hidden" value="<%=data%>" id="data">
+<% }) %>

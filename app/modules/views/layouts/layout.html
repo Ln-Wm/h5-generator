@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+        <% block('tkd', function(){ %>
+    		<title>h5生成器</title>
+    	    <meta name="keywords" content="h5生成器" />
+    	    <meta name="description" content="h5生成器" />
+        <% }) %>
+	    <meta name="HandheldFriendly" content="true" />
+	    <meta name="MobileOptimized" content="width" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	    <meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/assets/css/reset.css">
+        <% block('style', function(){ %><% }) %>
+        <script>
+            (function() {
+                function refreshRem() {
+                    var width = docEl.getBoundingClientRect().width;
+                    rem = width / (BASE_WIDTH / ROOT_FONT_SIZE);
+                    docEl.style.fontSize = rem + "px";
+                }
+                var tid = null, docEl = document.documentElement, BASE_WIDTH = 750, ROOT_FONT_SIZE = 100;
+                refreshRem();
+                window.addEventListener("resize", function() {
+                    clearTimeout(tid);
+                    tid = setTimeout(refreshRem, 300);
+                }, false);
+            })();
+        </script>
+	</head>
+	<body>
+        <% block('content', function(){ %><% }) %>
+        <script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+        <% block('script', function(){ %><% }) %>
+    </body>
+</html>

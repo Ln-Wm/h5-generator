@@ -1,0 +1,15 @@
+{
+    "apps" : [{
+        "name": "H5G",
+        "script": "./app.js",
+        "watch": "app",
+        "ignore_watch" : ["node_modules", "app/modules/views"],
+        "watch_options": {
+            "followSymlinks": false
+        },
+        "error_file": "./logs/err.log",
+        "out_file": "./logs/out.log",
+        "merge_logs": true,
+        "log_date_format": "YYYY-MM-DD HH:mm Z"
+    }]
+}

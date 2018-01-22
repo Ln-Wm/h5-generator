@@ -5,6 +5,7 @@ const express = require('express'),
     path = require('path'),
     favicon = require('static-favicon'),
     logger = require('morgan'),
+    compression = require('compression'),
     bodyParser = require('body-parser');
 
 // Config File
@@ -20,6 +21,7 @@ app.set('view options', {
     debug: process.env.NODE_ENV !== 'production'
 });
 app.set('view engine', 'html');
+app.use(compression());
 
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
 

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { createStore } from './store/store';
 Vue.prototype.$http = axios;
 
-let store = createStore(JSON.parse($('#data').val()));
+let store = createStore(window.__INIT_DATA__);
 
 const vm=new Vue({
     el: '#app',

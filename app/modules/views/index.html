@@ -10,5 +10,7 @@
 <% }) %>
 <% block('content', function(){ %>
     <div id="app"></div>
-    <input type="hidden" value="<%=data%>" id="data">
+    <script>
+        window.__INIT_DATA__=<%- data %>;
+    </script>
 <% }) %>

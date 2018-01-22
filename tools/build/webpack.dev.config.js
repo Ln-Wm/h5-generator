@@ -86,7 +86,7 @@ module.exports={
         overlay: { warnings: false, errors: true },
         publicPath: '/dist/'+name,
         proxy: {
-            "/": "http://localhost:5000"
+            "/": "http://localhost:8000"
         },
         quiet: true, // necessary for FriendlyErrorsPlugin
         watchOptions: {

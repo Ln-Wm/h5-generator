@@ -1,5 +1,9 @@
 const show = require('../dao/show');
-exports.index=async (req, res)=>{
-    let data={};
-    res.render('index', {data:JSON.stringify(data)});
-}
+exports.index={
+    params: [':actId'],
+    async handler(req, res, next) {
+        let actId=req.params.actId;
+        const data=await show.findActById(actId);
+        res.render('show/index', {data:JSON.stringify(data)});
+    }
+};

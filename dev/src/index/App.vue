@@ -27,8 +27,8 @@
                             <td>{{item.title}}</td>
                             <td>{{new Date(item.time).toLocaleString()}}</td>
                             <td>
-                                <a :href="'/show/'+item.actId" target="_blank">查看</a>
-                                <a :href="'/edit/'+item.actId" target="_blank">编辑</a>
+                                <a :href="'/show/index/'+item.actId" target="_blank">查看</a>
+                                <a :href="'/edit/index/'+item.actId" target="_blank">编辑</a>
                                 <a href="javascript:void(0);" style="color:red;">删除</a>
                             </td>
                         </tr>

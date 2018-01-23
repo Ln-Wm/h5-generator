@@ -83,10 +83,13 @@ module.exports={
         port: '3000',
         open: true,
         inline:true,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
         overlay: { warnings: false, errors: true },
-        publicPath: '/dist/'+name,
+        publicPath: `/dist/${name}/`,
         proxy: {
-            "/": "http://localhost:8000"
+            "/": "http://localhost:8000",
         },
         quiet: true, // necessary for FriendlyErrorsPlugin
         watchOptions: {

@@ -5,39 +5,41 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">编辑活动ฅ^•ﻌ•^ฅ</a>
                 </div>
+                <div class="navbar-header navbar-right">
+                    <button type="button" class="btn btn-default navbar-btn" @click="save()">保存</button>
+                </div>
             </div>
         </nav>
         <div class="row">
-            <div class="col-xs-3">
-                <div class="layer">
-                    页面/弹窗列表
-                </div>
+            <div class="col-xs-2">
+                <layers></layers>
             </div>
-            <div class="col-xs-6">
-                <div class="screen">
-                    展示屏幕
-                </div>
+            <div class="col-xs-8">
+                <screen></screen>
             </div>
-            <div class="col-xs-3">
-                <div class="tools">
-                    添加组件
-                </div>
+            <div class="col-xs-2">
+                <tools></tools>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+    import { mapActions } from 'vuex'
+    import Layers from './modules/TheLayers'
+    import Screen from './modules/TheScreen'
+    import Tools from './modules/TheTools'
     import swal from 'sweetalert'
     export default {
-        data(){
-            return {}
-        },
         name:'App',
-        computed:mapState([
-            'doc'
-        ])
+        methods:mapActions({
+            save: 'save'
+        }),
+        components:{
+            Layers,
+            Screen,
+            Tools
+        }
     }
 </script>
 

@@ -8,3 +8,11 @@ exports.findActById = (actId)=>{
         });
     });
 }
+exports.saveActivity = (actId,data)=>{
+    return new Promise((resolve) => {
+        activityModel.update({actId:actId},{$set:data})
+        .exec(function(err,doc){
+            resolve(doc);
+        });
+    });
+}

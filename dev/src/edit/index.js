@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import axios from 'axios';
-import { createStore } from './store/store';
-Vue.prototype.$http = axios;
+import { createStore } from './store/store'
 
 let store = createStore(window.__INIT_DATA__);
 

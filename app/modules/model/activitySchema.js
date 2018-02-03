@@ -9,6 +9,7 @@ const activitySchema = new mongoose.Schema({
 	description: String,  //标题
 	shareImg: String,  //标题
     pages: [],  //页面列表
+    pageIndex: Number,  //页面id计数器
     time: Number,  //创建时间
     status: Number, //状态 1正常 2删除
 });

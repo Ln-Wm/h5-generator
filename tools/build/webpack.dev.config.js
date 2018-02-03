@@ -37,6 +37,7 @@ module.exports={
     entry: entry,
     output: {
         path: path.resolve(__dirname, '../../public/dist/'+name),
+        publicPath:'http://localhost:3000/',
         filename: '[name].min.js'
     },
     resolve: {

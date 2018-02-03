@@ -21,13 +21,15 @@ export function createStore(init) {
         actions: {
             save({ state }) {
                 const api = '/edit/saveAjax';
-                axios.post(api, state)
-                .then(res => {
-                    if(res.data.success){
-                        console.log(1);
-                    }else{
-                        console.log(2);
-                    }
+                return new Promise((resolve,reject)=>{
+                  axios.post(api, state)
+                  .then(res => {
+                      if(res.data.success){
+                          resolve(res.data);
+                      }else{
+                          reject(res.data);
+                      }
+                  });
                 });
             },
         },

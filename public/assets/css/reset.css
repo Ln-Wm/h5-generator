@@ -11,6 +11,11 @@ select{
     background: #fff url(http://img.maopuda.com/secicon.png) center right/ .2rem no-repeat scroll;
     border-radius: 0;
 }
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
 .swal-footer {
     text-align: center;
     margin-top: 0;

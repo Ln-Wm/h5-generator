@@ -22,6 +22,7 @@
             padding:10px;
             background: #eee;
             border-radius: 10px;
+            margin: 0 auto;
             .screen{
                 width: 375px;
                 height: 667px;

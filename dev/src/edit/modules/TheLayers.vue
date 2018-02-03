@@ -5,6 +5,7 @@
                 v-for="(item,i) in pages"
                 :key="i"
                 :order="i"
+                :class="{active:editing==i}"
                 @dragstart.self="orderStart(i)"
                 @dragenter.self="orderEnter"
                 draggable="true">
@@ -13,7 +14,7 @@
                     <i class="glyphicon glyphicon-remove"></i>
                 </a>
             </div>
-            <a href="javascript:void(0);" class="btn btn-default" @click="add()">添加页面</a>
+            <el-button @click="add()" style="margin-top:10px;">添加页面</el-button>
         </div>
     </div>
 </template>
@@ -30,7 +31,7 @@
             }
         },
         computed: {
-            ...mapState(['pages','pageIndex'])
+            ...mapState(['pages','pageIndex','editing'])
         },
         methods:{
             ...mapMutations({
@@ -73,6 +74,7 @@
 
 <style lang="scss" scoped>
     .layers{
+        text-align: center;
         .page-list{
             height:687px;
             overflow-y: auto;
@@ -92,6 +94,9 @@
                 &:hover{
                     background: #eee;
                     cursor: pointer;
+                }
+                &.active{
+                    background: #eee;
                 }
                 &.orderdown:after{
                     content: '';

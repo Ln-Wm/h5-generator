@@ -67,11 +67,23 @@ module.exports={
             exclude: /node_modules/
           },
           {
-            test: /\.(png|jpg|gif|svg)$/,
+            test: /\.css$/,
+            loader: "style-loader!css-loader"
+          },
+          {
+            test: /\.(png|jpg|gif)$/,
             loader: 'url-loader',
             options: {
               limit: 10000,
               name: 'images/[name].[ext]?[hash]'
+            }
+          },
+          {
+            test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: '/fonts/[name].[hash:7].[ext]'
             }
           }
         ]

@@ -1,27 +1,25 @@
 <template>
-    <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">编辑活动ฅ^•ﻌ•^ฅ</a>
-                </div>
-                <div class="navbar-header navbar-right">
-                    <button type="button" class="btn btn-default navbar-btn" @click="save()">保存</button>
-                </div>
-            </div>
-        </nav>
-        <div class="row">
-            <div class="col-xs-2">
-                <layers></layers>
-            </div>
-            <div class="col-xs-8">
-                <screen></screen>
-            </div>
-            <div class="col-xs-2">
-                <tools></tools>
-            </div>
-        </div>
-    </div>
+    <el-container>
+      <el-header>
+        <el-menu default-active="1" mode="horizontal">
+          <el-menu-item index="1">编辑活动ฅ^•ﻌ•^ฅ</el-menu-item>
+          <el-button type="primary" plain @click="saveAct()">保存</el-button>
+        </el-menu>
+      </el-header>
+      <el-main>
+        <el-row :gutter="20">
+          <el-col :span="4">
+            <layers></layers>
+          </el-col>
+          <el-col :span="12">
+            <screen></screen>
+          </el-col>
+          <el-col :span="4">
+            <tools></tools>
+          </el-col>
+        </el-row>
+      </el-main>
+    </el-container>
 </template>
 
 <script>
@@ -32,9 +30,26 @@
     import swal from 'sweetalert'
     export default {
         name:'App',
-        methods:mapActions({
-            save: 'save'
-        }),
+        methods:{
+          ...mapActions({
+              save: 'save'
+          }),
+          saveAct(){
+            this.save()
+            .then(res=>{
+              this.$notify({
+                title: '保存成功！',
+                type: 'success'
+              });
+            })
+            .catch(res=>{
+              this.$notify({
+                title: '保存失败！',
+                type: 'success'
+              });
+            })
+          }
+        },
         components:{
             Layers,
             Screen,
@@ -42,14 +57,11 @@
         }
     }
 </script>
-
 <style lang="scss" scoped>
-    p {
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-align: center;
-      color: #2c3e50;
-      margin-top: 60px;
+  .el-menu{
+    .el-button{
+      float: right;
+      margin-top: 10px;
     }
+  }
 </style>

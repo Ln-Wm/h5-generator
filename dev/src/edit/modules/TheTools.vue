@@ -1,22 +1,23 @@
 <template>
     <div class="tools">
+      <el-button>文本</el-button>
+      <el-button>图片</el-button>
     </div>
 </template>
 
 <script>
-    import swal from 'sweetalert'
     export default {
         name:'Tools'
     }
 </script>
 
 <style lang="scss" scoped>
-    p {
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-align: center;
-      color: #2c3e50;
-      margin-top: 60px;
+  .tools{
+    .el-button{
+      width: 80px;
+      height: 80px;
+      margin-left: 10px;
+      margin-top:10px;
     }
+  }
 </style>

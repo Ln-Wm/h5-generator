@@ -10,8 +10,8 @@
                 @dragenter.self="orderEnter"
                 draggable="true">
                 {{i+1}}-{{item.name}}
-                <a href="javascript:void(0);" @click="deleteModule(i)">
-                    <i class="glyphicon glyphicon-remove"></i>
+                <a href="javascript:void(0);" class="delete" @click="deleteModule(i)">
+                    <i class="el-icon-close"></i>
                 </a>
             </div>
             <el-button @click="add()" style="margin-top:10px;">添加页面</el-button>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import { mapState, mapMutations, mapActions } from 'vuex'
+    import { mapState, mapMutations } from 'vuex'
     import { page } from '@/assets/models'
     import swal from 'sweetalert'
     export default {
@@ -86,14 +86,25 @@
                 padding: 0 10px;
                 border-radius: 5px;
                 position: relative;
-                a{
-                    float: right;
-                    color: red;
-                    margin-top: 5px;
+                .delete{
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: 0;
+                    right: 5px;
+                    background: red;
+                    text-align: center;
+                    line-height: 20px;
+                    border-radius: 50%;
+                    color: #fff;
+                    display: none;
                 }
                 &:hover{
                     background: #eee;
                     cursor: pointer;
+                    .delete{
+                      display: block;
+                    }
                 }
                 &.active{
                     background: #eee;

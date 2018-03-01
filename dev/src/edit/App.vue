@@ -27,7 +27,6 @@
     import Layers from './modules/TheLayers'
     import Screen from './modules/TheScreen'
     import Tools from './modules/TheTools'
-    import swal from 'sweetalert'
     export default {
         name:'App',
         methods:{

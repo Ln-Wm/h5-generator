@@ -42,7 +42,6 @@
 <script>
     import Page from '../Plugin/Page.vue'
     import { mapState } from 'vuex'
-    import swal from 'sweetalert'
     export default {
         data(){
             return {

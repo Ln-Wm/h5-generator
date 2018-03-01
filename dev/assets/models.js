@@ -5,6 +5,7 @@ const page={
     bgImg:'',
     bgColor:'',
     target:false,
+    items:[],
     blockIndex:0
 }
 const item={
@@ -17,6 +18,7 @@ const item={
     hide:false,
     size:true,
     bgUrl:'',
+    text:'',
     event:'',
     operate:'',
     target:'',
@@ -28,5 +30,6 @@ const block={
     height:10,
     top:0,
     left:0,
+    bgUrl:'',
 }
 export { page, item, block }

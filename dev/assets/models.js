@@ -1,3 +1,7 @@
+import pic from './pic.js'
+const item={
+  pic
+}
 const page={
     id:0,
     name:'',
@@ -5,24 +9,13 @@ const page={
     bgImg:'',
     bgColor:'',
     target:false,
-    items:[],
+    blocks:[
+      {
+        height:667,
+        items:[]
+      },
+    ],
     blockIndex:0
-}
-const item={
-    key:'pic',
-    name:'',
-    width:10,
-    height:10,
-    top:0,
-    left:0,
-    hide:false,
-    size:true,
-    bgUrl:'',
-    text:'',
-    event:'',
-    operate:'',
-    target:'',
-    animate:[],
 }
 const block={
     id:0,
@@ -31,5 +24,6 @@ const block={
     top:0,
     left:0,
     bgUrl:'',
+    bgColor:'',
 }
 export { page, item, block }

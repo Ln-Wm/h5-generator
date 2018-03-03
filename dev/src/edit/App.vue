@@ -2,7 +2,7 @@
     <el-container>
       <el-header>
         <el-menu default-active="1" mode="horizontal">
-          <el-menu-item index="1">编辑活动ฅ^•ﻌ•^ฅ</el-menu-item>
+          <el-menu-item index="1">编辑活动</el-menu-item>
           <el-button type="primary" plain @click="saveAct()">保存</el-button>
         </el-menu>
       </el-header>
@@ -47,7 +47,10 @@
                 type: 'success'
               });
             })
-          }
+          },
+          preDefault:function(e){
+            e.preventDefault();
+          },
         },
         components:{
             Layers,

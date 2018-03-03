@@ -6,6 +6,7 @@
                 :key="i"
                 :order="i"
                 :class="{active:editing==i}"
+                @click="changeEditing(i)"
                 @dragstart.self="orderStart(i)"
                 @dragenter.self="orderEnter"
                 draggable="true">
@@ -35,7 +36,8 @@
         },
         methods:{
             ...mapMutations({
-                pageInc: 'pageInc'
+                pageInc: 'pageInc',
+                changeEditing: 'changeEditing',
             }),
             add(){
                 this.pageInc();
@@ -86,6 +88,7 @@
                 padding: 0 10px;
                 border-radius: 5px;
                 position: relative;
+                font-size: 16px;
                 .delete{
                     width: 20px;
                     height: 20px;
@@ -98,6 +101,7 @@
                     border-radius: 50%;
                     color: #fff;
                     display: none;
+                    font-size: 16px;
                 }
                 &:hover{
                     background: #eee;

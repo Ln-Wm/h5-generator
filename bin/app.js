@@ -7,11 +7,9 @@ const express = require('express'),
     logger = require('morgan'),
     compression = require('compression'),
     bodyParser = require('body-parser');
-
 // Config File
 const config=require('../app/config/config');
 const app = express();
-
 // 禁用报头
 app.disable('x-powered-by');
 // view engine setup
@@ -22,20 +20,14 @@ app.set('view options', {
 });
 app.set('view engine', 'html');
 app.use(compression());
-
-app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
-
 app.use(logger('dev'));
-
 app.use(bodyParser.json({limit:'10mb'}));
 app.use(bodyParser.urlencoded({
     limit:'10mb',
     extended:false
 }));
-
 // 静态资源目录
 app.use(express.static(path.join(__dirname, '../public')));
-
 // 路由控制
 const libRouter = require('../app/lib/router');
 app.use(libRouter);
@@ -56,5 +48,4 @@ app.use((err, req, res ,next)=> {
         error: {}
     });
 });
-
 module.exports = app;

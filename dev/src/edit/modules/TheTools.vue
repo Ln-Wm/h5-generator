@@ -1,20 +1,17 @@
 <template>
   <div>
+    <h1>组件管理</h1>
     <div class="add-block">
       <el-button @click="addBlock()">添加区块</el-button>
     </div>
     <div class="tools">
-      <div class="add-button">文本</div>
       <div class="add-button"
-        @click="addPlugin('pic')"
-        @dragstart="addThis('pic')"
+        v-for="(comp,i) in comps"
+        @click="addItem(comp.key)"
+        @dragstart="addThis(comp.key)"
         draggable="true">
-        图片
+        {{comp.name}}
       </div>
-      <div class="add-button">视频</div>
-      <div class="add-button">表单</div>
-      <div class="add-button">产品</div>
-      <div class="add-button">领券</div>
     </div>
   </div>
 </template>
@@ -24,25 +21,29 @@
     import { item,block } from '@/assets/models'
     export default {
         name:'Tools',
+        data(){
+          return {
+            comps:item
+          }
+        },
         computed:{
-          ...mapState(['pages','editing','add','editBlock','editItem'])
+          ...mapState(['pages','editing','add','editBlock','editItem','block'])
         },
         methods:{
           ...mapMutations({
               changeEditItem: 'changeEditItem',
               changeAdd: 'changeAdd',
+              changeEditBlock: 'changeEditBlock',
           }),
           addBlock(){
             this.pages[this.editing].blocks.push(JSON.parse(JSON.stringify(block)))
           },
-          addPlugin(name){
+          addItem(name){
               this.addThis(name);
-              if(this.pages[this.editing]){
-                let edit=this.pages[this.editing].blocks[this.editBlock];
-                edit.items.push(JSON.parse(JSON.stringify(this.add)));
-                this.changeEditItem(edit.items.length-1);
-                this.changeAdd({});
-              }
+              this.changeEditBlock(this.editBlock);
+              this.block.items.push(JSON.parse(JSON.stringify(this.add)));
+              this.changeEditItem(this.block.items.length-1);
+              this.changeAdd({});
           },
           addThis(name){
             if(!this.pages[this.editing]){
@@ -56,6 +57,9 @@
 </script>
 
 <style lang="scss" scoped>
+  h1{
+    font-size: 22px;
+  }
   .tools{
     .add-button{
       line-height: 80px;

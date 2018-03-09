@@ -11,11 +11,14 @@
           <el-col :span="4">
             <layers></layers>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="10">
             <screen></screen>
           </el-col>
           <el-col :span="4">
             <tools></tools>
+          </el-col>
+          <el-col :span="4">
+            <the-form></the-form>
           </el-col>
         </el-row>
       </el-main>
@@ -27,6 +30,7 @@
     import Layers from './modules/TheLayers'
     import Screen from './modules/TheScreen'
     import Tools from './modules/TheTools'
+    import TheForm from './modules/TheForm'
     export default {
         name:'App',
         methods:{
@@ -55,7 +59,8 @@
         components:{
             Layers,
             Screen,
-            Tools
+            Tools,
+            TheForm
         }
     }
 </script>

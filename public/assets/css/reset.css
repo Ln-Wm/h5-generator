@@ -1,49 +1,8 @@
-input:focus,textarea:focus,select:focus{
-    outline:none;
-}
-select{
-    height:.6rem;
-    line-height: 1;
-    border: none;
-    box-shadow: none;
-    -webkit-appearance: none;
-    padding-right: .3rem;
-    background: #fff url(http://img.maopuda.com/secicon.png) center right/ .2rem no-repeat scroll;
-    border-radius: 0;
+body{
+  margin: 0;
 }
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-}
-.swal-footer {
-    text-align: center;
-    margin-top: 0;
-}
-.swal-button{
-    padding:.14rem .28rem;
-}
-.swal-button:focus {
-    outline: none;
-    box-shadow: none;
-}
-.swal-modal {
-    width: 6.1rem;
-}
-.swal-icon{
-    margin: .2rem auto;
-}
-.swal-icon:first-child{
-    margin-top: .3rem;
-}
-.swal-title{
-    padding-top: 0;
-    margin-bottom: 0;
-    font-size: .36rem;
-}
-.swal-title:not(:last-child){
-    margin-bottom: 0;
-}
-.swal-text:first-child{
-    margin-top: .45rem;
 }

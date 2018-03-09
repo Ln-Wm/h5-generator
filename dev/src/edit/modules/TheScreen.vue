@@ -1,20 +1,22 @@
 <template>
   <div class="shell" @dragover="preDefault">
     <div class="phone">
-      <div class="screen" @drop="addItem">
-        <template v-if="pages[editing]">
+      <div class="screen" @drop="addItem" :style="screen">
+        <template v-if="edit">
           <div class="block"
-            v-for="(block,i) in pages[editing].blocks"
-            :style="blockHeight(block)"
+            :class="{active:editBlock==i}"
+            v-for="(piece,i) in edit.blocks"
+            :style="blockStyle(piece)"
             :key="i">
             <item
-              v-for="(item,j) in block.items"
+              v-for="(item,j) in piece.items"
               :item="item"
               :i="j"
+              :block-index="i"
               :key="j">
             </item>
-            <a href="javascript:;" class="edit-block">编辑区块</a>
-            <a href="javascript:;" class="delete-block">删除区块</a>
+            <a href="javascript:;" class="edit-block" @click="changeEditBlock(i)">编辑区块</a>
+            <a href="javascript:;" class="delete-block" @click="deleteBlock(i)">删除区块</a>
           </div>
         </template>
       </div>
@@ -25,26 +27,40 @@
 <script>
     import { mapState, mapMutations } from 'vuex'
     import item from './item'
-    import $ from 'jquery'
     export default {
         name:'screen',
-        data(){
-          return {
-            editPage:{}
-          }
-        },
         computed:{
-          ...mapState(['pages','editing','add','editBlock','editItem'])
+          ...mapState(['pages','edit','add','block','editBlock']),
+          screen(){
+            return {
+              background:`url(${this.edit.bgImg}) top/375px no-repeat`,
+              backgroundColor:this.edit.bgColor,
+              'overflow-y':this.edit.type==1?'auto':'hidden'
+            }
+          }
         },
         methods:{
           ...mapMutations({
-              changeEditItem: 'changeEditItem',
-              changeAdd: 'changeAdd',
+            changeEditBlock:'changeEditBlock',
+            changeEditItem: 'changeEditItem',
+            changeAdd: 'changeAdd',
           }),
-          blockHeight(block){
+          blockStyle(block){
             let h=block.height;
             return {
+              background:`url(${block.bgImg}) top/375px no-repeat`,
+              backgroundColor:block.bgColor,
               height:`${h}px`
+            }
+          },
+          deleteBlock(i){
+            if(this.edit.blocks.length>1){
+              this.edit.blocks.splice(i,1);
+            }else{
+              this.$notify.error({
+                title: '删除失败',
+                message: '页面里面至少要有一个block'
+              });
             }
           },
           preDefault(e){
@@ -53,13 +69,14 @@
           addItem(e){
             if(this.add.key){
               const scr=$(e.target).closest('.block');
+              const i= scr.index();
+              this.changeEditBlock(i);
               const top=e.pageY-scr.offset().top;
               const left=e.pageX-scr.offset().left;
               this.add.top=Math.floor(top-this.add.height/2);
               this.add.left=Math.floor(left-this.add.width/2);
-              let edit=this.pages[this.editing].blocks[this.editBlock];
-              edit.items.push(JSON.parse(JSON.stringify(this.add)));
-              this.changeEditItem(edit.items.length-1);
+              this.block.items.push(JSON.parse(JSON.stringify(this.add)));
+              this.changeEditItem(this.block.items.length-1);
               this.changeAdd({});
             }
           },
@@ -107,6 +124,9 @@
             position: absolute;
             top: 0;
             right: 0;
+          }
+          &.active{
+            box-shadow: inset 0 0 20px rgba(250,41,29,.4)
           }
         }
       }

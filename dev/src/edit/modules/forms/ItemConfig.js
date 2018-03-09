@@ -1,20 +1,19 @@
-import pic from './pic.vue'
-import txt from './txt.vue'
-import veo from './veo.vue'
+import pic from './Pic.vue'
+import Txt from './Txt.vue'
+import Veo from './Veo.vue'
 
 export default {
-  props:['item','preview'],
+  props:['item'],
   render: function (createElement) {
     return createElement(this.item.key,{
       props: {
-        preview:this.preview,
         item: this.item,
       },
     })
   },
   components: {
     pic,
-    txt,
-    veo
+    Txt,
+    Veo
   }
 };

@@ -10,7 +10,11 @@ export function createStore(init) {
         editBlock:0,
         editItem:0,
         pageIndex:0,
-        add:{}
+        edit:init.pages[0]||{},
+        block:{},
+        item:{},
+        add:{},
+        editForm:false
     }
     state=Object.assign(state,init||{});
     console.log(state)
@@ -22,15 +26,32 @@ export function createStore(init) {
           },
           changeEditing (state,n) {
               state.editing=n;
+              state.edit=state.pages[n];
+              state.editForm='page';
           },
           changeEditBlock (state,n) {
               state.editBlock=n;
+              state.block=state.pages[state.editing].blocks[state.editBlock];
+              state.editForm='block';
           },
           changeEditItem (state,n) {
               state.editItem=n;
+              state.item=state.pages[state.editing].blocks[state.editBlock].items[state.editItem];
+              state.editForm='item';
+          },
+          resetEdit (state) {
+              state.editing=0;
+              state.editBlock=0;
+              state.editItem=0;
           },
           changeAdd (state,obj) {
               state.add=obj;
+          },
+          changeSize (state,obj) {
+              state.item.top=obj.top;
+              state.item.left=obj.left;
+              state.item.width=obj.width;
+              state.item.height=obj.height;
           },
         },
         actions: {

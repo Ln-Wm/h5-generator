@@ -1,0 +1,17 @@
+export default {
+  key:'txt',
+  name:'文本',
+  width:100,
+  height:100,
+  top:10,
+  left:10,
+  size:true,
+  del:true,
+  bgColor:'#eee',
+  bgImg:'',
+  text:'',
+  event:0,
+  operate:1,
+  target:'',
+  animate:[],
+}

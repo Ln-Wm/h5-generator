@@ -18,8 +18,10 @@
     "express-art-template": "^1.0.0",
     "figlet": "^1.2.0",
     "lodash": "^4.13.1",
+    "md5": "^2.2.1",
     "mongoose": "^4.12.3",
     "morgan": "~1.0.0",
+    "multer": "^1.3.0",
     "static-favicon": "~1.0.0"
   },
   "devDependencies": {

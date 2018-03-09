@@ -1,21 +1,23 @@
 <template>
   <div class="item"
-    :class="{zoom:editItem===i}"
-    :style="style"
-    @mousedown="itemEdit(i,$event)">
+    :class="{zoom:(editItem==i && editBlock==blockIndex)}"
+    :style="style">
     <comp :item="item"></comp>
-    <div class="delete" @click="deleteItem(i)"></div>
+    <div class="blank" @mousedown="itemEdit(i,$event)"></div>
+    <div class="delete" @click="deleteItem(i)" v-if="item.del"></div>
+    <zoom v-if="editItem==i && editBlock==blockIndex && item.size"></zoom>
   </div>
 </template>
 
 <script>
     import { mapState, mapMutations } from 'vuex'
     import comp from '../../items/comp'
-    import $ from 'jquery'
+    import Zoom from './Zoom.vue'
+    import picUpload from '@/assets/picUpload'
     let count=0;
     export default {
         name:'item',
-        props:['item','preview','i'],
+        props:['item','preview','i','blockIndex'],
         computed:{
           ...mapState(['pages','editing','add','editBlock','editItem']),
           style(){
@@ -24,7 +26,7 @@
                   height:`${this.item.height}px`,
                   top:`${this.item.top}px`,
                   left:`${this.item.left}px`,
-                  backgroundColor:this.item.bgColor,
+                  background:`${this.item.bgColor} url(${this.item.bgImg}) top/100% 100% no-repeat`,
               }
               return style;
           },
@@ -32,15 +34,29 @@
         methods:{
           ...mapMutations({
               changeEditItem: 'changeEditItem',
+              changeEditBlock: 'changeEditBlock',
           }),
           deleteItem(i){
             this.pages[this.editing].blocks[this.editBlock].items.splice(i,1);
           },
+          itemBg(){
+            picUpload()
+            .then(res=>{
+              this.item.bgImg=res.src;
+              let obj = new Image();
+              obj.src = res.src;
+              obj.onload = ()=>{
+                this.item.width=obj.width/2,
+                this.item.height=obj.height/2;
+              }
+            })
+          },
           itemEdit(i,e){
             e.preventDefault();
             count++;
+            this.changeEditBlock(this.blockIndex);
             this.changeEditItem(i);
-            let edit = this.pages[this.editing].blocks[this.editBlock].items[i]
+            let edit = this.pages[this.editing].blocks[this.editBlock].items[i];
             let $this = $(e.target).closest('.item');
             let father = $this.parent();
             let faWidth = father.width();
@@ -51,7 +67,7 @@
             let Y = e.pageY;
             let positionX = $this.position().left;
             let positionY = $this.position().top;
-            $(document).on('mousemove',function(e){
+            $(document).on('mousemove',e=>{
                 e.preventDefault();
                 let moveX = positionX+e.pageX-X;
                 let moveY = positionY+e.pageY-Y;
@@ -70,21 +86,23 @@
                     edit.top=faHeight-thisHeight;
                 }
             });
-            $(document).on('mouseup',function(e){
+            $(document).on('mouseup',e=>{
                 e.preventDefault();
                 $(document).off('mousemove');
                 $(document).off('mouseup');
             });
-            setTimeout(function(){
+            setTimeout(()=>{
                 if(count>1){
-                  console.log('双击666')
+                  console.log('双击666');
+                  this.itemBg();
                 }
                 count=0;
             },300);
           }
         },
         components:{
-          comp
+          comp,
+          Zoom
         }
     }
 </script>
@@ -94,6 +112,13 @@
         position: absolute;
         cursor: pointer;
         z-index: 1;
+        .blank{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
         .delete{
             width:20px;
             height:20px;

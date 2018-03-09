@@ -1,12 +1,13 @@
 <template>
     <div class="layers" @dragover="preDefault">
+        <h1>页面管理</h1>
         <div class="page-list" @drop="dragEvent">
             <div class="page clearfix"
                 v-for="(item,i) in pages"
                 :key="i"
                 :order="i"
                 :class="{active:editing==i}"
-                @click="changeEditing(i)"
+                @click.self="resetEdit(),changeEditing(i)"
                 @dragstart.self="orderStart(i)"
                 @dragenter.self="orderEnter"
                 draggable="true">
@@ -15,15 +16,15 @@
                     <i class="el-icon-close"></i>
                 </a>
             </div>
-            <el-button @click="add()" style="margin-top:10px;">添加页面</el-button>
+            <el-button @click="add(1)" style="margin-top:10px;">添加页面</el-button>
+            <el-button @click="add(2)" style="margin-top:10px;">添加弹窗</el-button>
         </div>
     </div>
 </template>
 
 <script>
     import { mapState, mapMutations } from 'vuex'
-    import { page } from '@/assets/models'
-    import swal from 'sweetalert'
+    import { page, pop } from '@/assets/models'
     export default {
         name:'Layers',
         data(){
@@ -38,20 +39,41 @@
             ...mapMutations({
                 pageInc: 'pageInc',
                 changeEditing: 'changeEditing',
+                resetEdit:'resetEdit',
             }),
-            add(){
+            add(type){
                 this.pageInc();
-                let data=Object.assign({},page,{
-                    id:this.pageIndex,
-                    name:`页面${this.pageIndex}`
-                });
+                let data;
+                if(type==1){
+                  data=Object.assign({},page,{
+                      id:this.pageIndex,
+                      name:`页面${this.pageIndex}`
+                  });
+                }else{
+                  data=Object.assign({},pop,{
+                      id:this.pageIndex,
+                      name:`弹窗${this.pageIndex}`
+                  });
+                }
                 this.pages.push(data);
             },
             preDefault(e){
                 e.preventDefault();
             },
             deleteModule(i){
+              if(this.pages.length>1){
                 this.pages.splice(i,1);
+                if(i>0){
+                  this.changeEditing(i-1);
+                }else{
+                  this.changeEditing(0);
+                }
+              }else{
+                this.$notify.error({
+                  title: '删除失败',
+                  message: '至少保留一个页面'
+                });
+              }
             },
             dragEvent(e){
                 $('.page').removeClass('orderdown orderup');
@@ -77,6 +99,9 @@
 <style lang="scss" scoped>
     .layers{
         text-align: center;
+        h1{
+          font-size: 22px;
+        }
         .page-list{
             height:687px;
             overflow-y: auto;

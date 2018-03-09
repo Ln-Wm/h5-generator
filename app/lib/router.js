@@ -1,7 +1,7 @@
 const express = require('express'),
     app = express.Router();
 
-// 图片上传
-// const picUpload = require('./picUpload');
+var fileUpload = require('./fileUpload');
+app.post('/fileUpload',fileUpload.upload,fileUpload.callback);
 
 module.exports=app;

@@ -1,7 +1,7 @@
 <template>
   <el-form ref="form" label-width="80px">
     <el-form-item label="图片链接">
-      <el-button @click="itemBg()">上传图片</el-button>
+      <el-button @click="itemBg()">{{item.bgImg?'更改':'上传'}}图片</el-button>
     </el-form-item>
   </el-form>
 </template>

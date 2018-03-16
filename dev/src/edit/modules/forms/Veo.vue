@@ -3,6 +3,9 @@
     <el-form-item label="视频地址">
       <el-input v-model="item.videoUrl"></el-input>
     </el-form-item>
+    <!-- <el-form-item label="封面图片">
+      <el-button @click="itemBg()">上传图片</el-button>
+    </el-form-item> -->
     <el-form-item label="自动播放">
       <el-switch v-model="item.autoPlay"></el-switch>
     </el-form-item>
@@ -17,5 +20,13 @@
 <script>
   export default {
     props:['item'],
+    methods:{
+      itemBg(){
+        picUpload()
+        .then(res=>{
+          this.item.bgImg=res.src;
+        })
+      },
+    }
   }
 </script>

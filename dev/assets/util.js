@@ -1,4 +1,4 @@
-const h5g={
+const vmk={
 	//当前根字体大小   width/(defaultWidth/defaultRootFontSize)
 	rootFontSize : (document.documentElement.getBoundingClientRect().width/(750/100)),
 	//px单位数值转换为rem单位数值
@@ -66,4 +66,4 @@ const h5g={
 	    }
 	}
 }
-export default h5g
+export default vmk

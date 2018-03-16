@@ -3,7 +3,7 @@
     <h1>活动设置</h1>
     <el-form ref="form" label-width="80px">
       <el-form-item label="活动名称">
-        <el-input></el-input>
+        <el-input v-model="actTitle"></el-input>
       </el-form-item>
     </el-form>
     <!-- 页面设置 -->
@@ -36,10 +36,13 @@
       </el-form-item>
       <el-form-item label="背景图片" v-if="edit.type!=2">
         <!-- <el-input v-model="edit.bgImg"></el-input> -->
-        <el-button @click="upload()">上传图片</el-button>
+        <el-button @click="upload()">{{edit.bgImg?'更改':'上传'}}图片</el-button>
       </el-form-item>
       <el-form-item label="背景颜色" v-if="edit.type!=2">
         <el-input v-model="edit.bgColor"></el-input>
+      </el-form-item>
+      <el-form-item label="自定义js">
+        <el-input type="textarea" v-model="edit.diy"></el-input>
       </el-form-item>
     </el-form>
     <!-- 区块设置 -->
@@ -49,7 +52,7 @@
         <el-input v-model="block.height"></el-input>
       </el-form-item>
       <el-form-item label="背景图片">
-        <el-button @click="blockBg()">上传图片</el-button>
+        <el-button @click="blockBg()">{{block.bgImg?'更改':'上传'}}图片</el-button>
       </el-form-item>
       <el-form-item label="背景颜色">
         <el-input v-model="block.bgColor"></el-input>
@@ -79,8 +82,8 @@
       <el-form-item label="上边距">
         <el-input v-model="item.top"></el-input>
       </el-form-item>
-      <el-form-item label="背景图片" v-if="item.key!='pic'">
-        <el-button @click="itemBg()">上传图片</el-button>
+      <el-form-item label="背景图片" v-if="!item.noBg">
+        <el-button @click="itemBg()">{{item.bgImg?'更改':'上传'}}图片</el-button>
       </el-form-item>
       <el-form-item label="背景颜色">
         <el-input v-model="item.bgColor"></el-input>
@@ -194,12 +197,21 @@
           }
         },
         computed:{
-          ...mapState(['pages','edit','add','block','item','editForm','editBlock','editItem']),
+          ...mapState(['title','pages','edit','add','block','item','editForm','editBlock','editItem']),
+          actTitle:{
+            get () {
+              return this.title
+            },
+            set (value) {
+              this.updateTitle(value)
+            }
+          }
         },
         methods:{
           ...mapMutations({
             changeEditItem: 'changeEditItem',
             changeAdd: 'changeAdd',
+            updateTitle: 'updateTitle',
           }),
           upload(){
             picUpload()

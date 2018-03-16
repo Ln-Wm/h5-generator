@@ -1,6 +1,7 @@
 import pic from './Pic.vue'
 import Txt from './Txt.vue'
 import Veo from './Veo.vue'
+import Slider from './Slider.vue'
 
 export default {
   props:['item'],
@@ -14,6 +15,7 @@ export default {
   components: {
     pic,
     Txt,
-    Veo
+    Veo,
+    Slider
   }
 };

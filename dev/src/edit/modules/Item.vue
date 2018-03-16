@@ -2,9 +2,9 @@
   <div class="item"
     :class="{zoom:(editItem==i && editBlock==blockIndex)}"
     :style="style">
-    <comp :item="item"></comp>
+    <comp :item="item" :preview="true"></comp>
     <div class="blank" @mousedown="itemEdit(i,$event)"></div>
-    <div class="delete" @click="deleteItem(i)" v-if="item.del"></div>
+    <div class="delete" @click="deleteItem(i)" v-if="!item.noDel"></div>
     <zoom v-if="editItem==i && editBlock==blockIndex && item.size"></zoom>
   </div>
 </template>
@@ -17,7 +17,7 @@
     let count=0;
     export default {
         name:'item',
-        props:['item','preview','i','blockIndex'],
+        props:['item','i','blockIndex'],
         computed:{
           ...mapState(['pages','editing','add','editBlock','editItem']),
           style(){

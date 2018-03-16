@@ -1,8 +1,8 @@
 export default {
-  key:'pic',
-  name:'图片',
-  width:100,
-  height:100,
+  key:'slider',
+  name:'轮播图',
+  width:200,
+  height:130,
   top:10,
   left:10,
   size:true,
@@ -13,4 +13,10 @@ export default {
   operate:1,
   target:'',
   animate:[],
+  imgList:[
+    {
+      url:'javascript:;',
+      img:''
+    }
+  ]
 }

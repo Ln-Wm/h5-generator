@@ -1,10 +1,12 @@
 import pic from './comps/pic.js'
 import txt from './comps/txt.js'
 import veo from './comps/veo.js'
+import slider from './comps/slider.js'
 const item={
   pic,
   txt,
-  veo
+  veo,
+  slider
 }
 const page={
   id:0,
@@ -45,6 +47,8 @@ const pop={
           left:25,
           size:true,
           bgColor:'#fff',
+          noBg:true,
+          noDel:true,
           bgImg:'',
           text:'',
           event:0,
@@ -60,8 +64,10 @@ const pop={
           top:110,
           left:315,
           size:true,
-          bgColor:'',
-          bgImg:'http://staticdev.vivo.com.cn/campaign/commodity/20180307/20180307160147856366_original.png',
+          noBg:true,
+          noDel:true,
+          bgColor:'red',
+          bgImg:'',
           text:'',
           event:1,
           operate:4,

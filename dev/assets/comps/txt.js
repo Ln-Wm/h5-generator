@@ -6,7 +6,6 @@ export default {
   top:10,
   left:10,
   size:true,
-  del:true,
   bgColor:'#eee',
   bgImg:'',
   text:'',

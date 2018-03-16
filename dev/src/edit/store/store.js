@@ -53,6 +53,9 @@ export function createStore(init) {
               state.item.width=obj.width;
               state.item.height=obj.height;
           },
+          updateTitle(state,title){
+            state.title=title
+          },
         },
         actions: {
           save({ state }) {
